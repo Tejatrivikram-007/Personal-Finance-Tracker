@@ -1,0 +1,180 @@
+{% extends 'pages/index.html' %}
+
+{% block content %}
+<h1>Dashboard</h1>
+<p>Total Income: ₹ {{ total_income }}</p>
+<p>Total Expense: ₹ {{ total_expense }}</p>
+<p>Total Savings: ₹ {{ total_savings }}</p>
+<p>Available Balance: ₹ {{ balance }}</p>
+
+<button class="my-button" style="border-radius: 10px;">
+    <a href="{% url 'add_income' %}" style='text-decoration: none;padding: 15px;color: black;'>Add Income</a>
+</button>
+<button class="my-button" style="border-radius: 10px;">
+    <a href="{% url 'add_expense' %}" style='text-decoration: none;padding: 15px;color: black;'>Add Expense</a>
+</button>
+<button class="my-button" style="border-radius: 10px;">
+    <a href="{% url 'add_savings' %}" style='text-decoration: none;padding: 15px;color: black;'>Add Savings</a>
+</button>
+<br><br><br>
+<div class="header-container">
+    <h1 class="chart-title"><u>Income, Expenses, Savings Charts</u></h1>
+  </div>
+  
+<div class="chart-container">
+    
+    <div class="chart-item">
+        <h3>Expenses by Category</h3>
+        <canvas id="expenseChart" width="300" height="200"></canvas>
+    </div>
+    <div class="chart-item">
+        <h3>Income by Category</h3>
+        <canvas id="incomeChart" width="500" height="300"></canvas>
+    </div>
+    <div class="chart-item">
+        <h3>Savings by Category</h3>
+        <canvas id="savingsChart" width="300" height="200"></canvas>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    // Function to aggregate data by categories
+    function aggregateByCategory(data) {
+        const result = {};
+        data.forEach(entry => {
+            const category = entry.category;
+            if (!result[category]) {
+                result[category] = 0;
+            }
+            result[category] += entry.amount;
+        });
+        return result;
+    }
+
+    // Data passed from Django views
+    const expenseData = [{% for expense in expenses %} { date: "{{ expense.date|date:"Y-m-d" }}", amount: {{ expense.amount }}, category: "{{ expense.category }}" }, {% endfor %}];
+    const incomeData = [{% for income in incomes %} { date: "{{ income.date|date:"Y-m-d" }}", amount: {{ income.amount }}, category: "{{ income.category }}" }, {% endfor %}];
+    const savingsData = [{% for saving in savings %} { date: "{{ saving.date|date:"Y-m-d" }}", amount: {{ saving.amount }}, category: "{{ saving.category }}" }, {% endfor %}];
+
+    // Aggregate the data by category
+    const expenseByCategory = aggregateByCategory(expenseData);
+    const incomeByCategory = aggregateByCategory(incomeData);
+    const savingsByCategory = aggregateByCategory(savingsData);
+
+    
+    // Prepare the data for the Expense Chart
+    const expenseCategories = Object.keys(expenseByCategory);
+    const expenseAmounts = expenseCategories.map(category => expenseByCategory[category]);
+    const expenseColors = expenseCategories.map(() => 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.5)');
+
+    // Prepare the data for the Income Chart
+    const incomeCategories = Object.keys(incomeByCategory);
+    const incomeAmounts = incomeCategories.map(category => incomeByCategory[category]);
+    const incomeColors = incomeCategories.map(() => 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.5)');
+
+    // Prepare the data for the Savings Chart
+    const savingsCategories = Object.keys(savingsByCategory);
+    const savingsAmounts = savingsCategories.map(category => savingsByCategory[category]);
+    const savingsColors = savingsCategories.map(() => 'rgba(' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ',' + Math.floor(Math.random() * 256) + ', 0.5)');
+
+
+    // Expense Chart Data
+    const expenseChartData = {
+        labels: expenseCategories,
+        datasets: [{
+            label: 'Expenses by Category',
+            data: expenseAmounts,
+            backgroundColor: expenseColors,
+            borderColor: expenseColors.map(color => color.replace('0.5', '1')),
+            borderWidth: 1
+        }]
+    };
+
+    // Income Chart Data
+    const incomeChartData = {
+        labels: incomeCategories,
+        datasets: [{
+            label: 'Income by Category',
+            data: incomeAmounts,
+            backgroundColor: incomeColors,
+            borderColor: incomeColors.map(color => color.replace('0.5', '1')),
+            borderWidth: 1
+        }]
+    };
+
+
+    // Savings Chart Data
+    const savingsChartData = {
+        labels: savingsCategories,
+        datasets: [{
+            label: 'Savings by Category',
+            data: savingsAmounts,
+            backgroundColor: savingsColors,
+            borderColor: savingsColors.map(color => color.replace('0.5', '1')),
+            borderWidth: 1
+        }]
+    };
+
+    
+    // Expense Chart Configuration
+    const expenseConfig = {
+        type: 'pie',
+        data: expenseChartData,
+        options: {
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    enabled: true,
+                }
+            }
+        }
+    };
+
+    // Income Chart Configuration
+    const incomeConfig = {
+        type: 'bar',
+        data: incomeChartData,
+        options: {
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    enabled: true,
+                }
+            }
+        }
+    };
+
+    // Savings Chart Configuration
+    const savingsConfig = {
+        type: 'pie',
+        data: savingsChartData,
+        options: {
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    enabled: true,
+                }
+            }
+        }
+    };
+
+    
+
+    // Create the Expense chart
+    const expenseCtx = document.getElementById('expenseChart').getContext('2d');
+    new Chart(expenseCtx, expenseConfig);
+
+    // Create the Income chart
+    const incomeCtx = document.getElementById('incomeChart').getContext('2d');
+    new Chart(incomeCtx, incomeConfig);
+
+    // Create the Savings chart
+    const savingsCtx = document.getElementById('savingsChart').getContext('2d');
+    new Chart(savingsCtx, savingsConfig);
+</script>
+
+
+
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'pages/index.html' %}
+
+{% block content %}
+
+<div class="income_income">
+    <h2>Update Income</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit" class="btn_save btn-primary">Update Income</button>
+    </form>
+</div>
+
+{% endblock content %}

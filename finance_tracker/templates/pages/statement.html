@@ -1,0 +1,47 @@
+{% extends 'pages/index.html' %}
+{% block content %}
+<div class="statement-container">
+    <h1 class="statement-title">Statement for {{ month }}/{{ year }}</h1>
+    <p class="total-income">Total Income: ₹ {{ total_income }}</p>
+    <p class="total-expense">Total Expense: ₹ {{ total_expense }}</p>
+    <p class="total-savings" style="color: #03a9f4;font-size: 18px;margin: 10px 0;">Total Savings: ₹ {{ total_savings }}</p>
+    <p class="balance">Balance: ₹ {{ balance }}</p>
+
+    <h2 class="income-title">Income Records</h2>
+    <ul class="income-list">
+        {% for income in income_records %}
+            <li class="income-item">{{ income.date }}: ₹ {{ income.amount }} - {{ income.source }} - {{ income.description }}</li>
+        {% empty %}
+            <li class="income-empty">No income records for this month.</li>
+        {% endfor %}
+    </ul>
+
+    <h2 class="expense-title">Expense Records</h2>
+    <ul class="expense-list">
+        {% for expense in expense_records %}
+            <li class="expense-item">{{ expense.date }}: ₹ {{ expense.amount }} - {{ expense.category }} - {{ expense.description }}</li>
+        {% empty %}
+            <li class="expense-empty">No expense records for this month.</li>
+        {% endfor %}
+    </ul>
+
+    <h2 class="saving-title" style="font-size: 20px;font-weight: 600;margin-top: 20px;color: #333;" >Savings Records</h2>
+    <ul class="saving-list" style="list-style-type: none;padding: 0;">
+        {% for saving in savings_records %}
+            <li class="saving-item" style="font-size: 16px;margin: 8px 0;padding: 10px;background-color: #2a695671;border-radius: 4px;">{{ saving.date }}: ₹ {{ saving.amount }} - {{ saving.category }} - {{ saving.description }}</li>
+        {% empty %}
+            <li class="saving-empty" style="font-style: italic;color: #888;">No saving records for this month.</li>
+        {% endfor %}
+    </ul>
+
+    
+<div class="download_btns" style="display: flex;justify-content: center;gap: 35px;">
+    <a class="download-link" href="{% url 'generate_statement' month=month year=year %}?download=csv">Download as CSV</a>
+    <a class="download-link" href="{% url 'download_statement_pdf' month=month year=year %}?download=pdf">Download as PDF</a>
+    <a class="download-link" href="{% url 'generate_statement' month=month year=year %}?download=excel">Download as EXCEL</a>
+</div>
+<div class="back">
+    <a class="download-link" href="{% url 'statements_form' %}" style="display: flex;justify-content: center;">Back to Statements </a>
+</div>
+</div>
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'pages/index.html' %}
+
+{% block content %}
+
+<div class="update_saving">
+    <h2>Update Savings</h2>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+<button type="submit" class="btn_save btn-primary">Update Savings</button>
+    </form>
+</div>
+
+{% endblock content %}
