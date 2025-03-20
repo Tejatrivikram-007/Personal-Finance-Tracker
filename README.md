@@ -1,3 +1,5 @@
+** PERSONAL FINANCE TRACKER **
+
 Personal Finance Tracker
 A web-based personal finance tracker built using Django. This application allows users to manage their income, expenses, and view financial summaries in real-time. Users can categorize their transactions, track spending patterns, set budgets, and generate reports to better manage their personal finances.
 
