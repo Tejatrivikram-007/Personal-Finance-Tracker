@@ -321,7 +321,7 @@ def download_statement_csv(income_records, expense_records, savings_records, mon
     writer.writerow(['Total Income', total_income])
     writer.writerow(['Total Expense', total_expense])
     writer.writerow(['Total Savings', total_savings])
-    writer.writerow(['Balance', balance])
+    writer.writerow(['Savings + Remaining Balance', balance])
 
     return response
 
@@ -405,7 +405,7 @@ def download_statement_pdf(income_records, expense_records, savings_records, mon
     p.drawString(50, y_position, f"Total Income: {total_income}")
     p.drawString(50, y_position - 20, f"Total Expense: {total_expense}")
     p.drawString(50, y_position - 40, f"Total Savings: {total_savings}")
-    p.drawString(50, y_position - 60, f"Balance: {balance}")
+    p.drawString(50, y_position - 60, f"Savings + Remaining Balance: {balance}")
 
     # Finalize PDF
     p.showPage()
@@ -522,7 +522,7 @@ def download_statement_excel(income_records, expense_records, savings_records, m
         ('Total Income', total_income),
         ('Total Expense', total_expense),
         ('Total Savings', total_savings),
-        ('Balance', balance)
+        ('Savings + Remaining Balance', balance)
     ]
 
     for total_name, total_value in totals:
