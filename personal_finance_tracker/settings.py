@@ -89,7 +89,8 @@ DATABASES = {
 
 database_url=os.environ.get("DATABASE_URL")
 
-DATABASES['default'] = dj_database_url.config(default="database_url")
+DATABASES['default'] = dj_database_url.config(default=database_url)
+
 
 
 # Password validation
