@@ -1,74 +1,71 @@
 {% extends 'pages/index.html' %}
 {% block content %}
 
-    <div class="container">
-        <!-- Incomes Table -->
-        <div>
-            <h2>Incomes</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Source</th>
-                        <th>Amount</th>
-                        <th>Date</th>
-                        <th>Description</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for income in incomes %}
-                    <tr>
-                        <td>{{ income.source }}</td>
-                        <td>{{ income.amount }}</td>
-                        <td>{{ income.date }}</td>
-                        <td>{{ income.description }}</td>
-                        <td><a href="{% url 'update_income' income.id %}" >Edit</a> | <a href="{% url 'delete_income' income.id %}" > Delete</a> </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        
-        <div class="btn" style="display: flex;justify-content: center;gap: 30px;padding: 25px;">
-            
-        <button class="finance_btn" style="border-radius: 10px;"><a href="{% url 'add_income' %}" style='text-decoration: none;padding: 15px;color: black;'>Add Income</a></button>
-        <button class="finance_btn" style="border-radius: 10px;"><a href="{% url 'add_expense' %}" style='text-decoration: none;padding: 15px;color: black;'>Add Expense</a></button>
-        <button class="finance_btn" style="border-radius: 10px;"><a href="{% url 'add_savings' %}" style='text-decoration: none;padding: 15px;color: black;'>Add Savings</a></button>
-
-
-        </div>
-       
-        <!-- Expenses Table -->
-        <div>
-            <h2>Expenses</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Category</th>
-                        <th>Amount</th>
-                        <th>Description</th>
-                        <th>Date</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for expense in expenses %}
-                    <tr>
-                        <td>{{ expense.category }}</td>
-                        <td>{{ expense.amount }}</td>
-                        <td>{{ expense.description }}</td>
-                        <td>{{ expense.date }}</td>
-                        <td><a href="{% url 'update_expense' expense.id %}">Edit</a> | <a href="{% url 'delete_expense' expense.id %}"> Delete</a> </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
+<div class="financial-container">
+    <div class="action-buttons">
+        <button class="action-btn"><a href="{% url 'add_income' %}">Add Income</a></button>
+        <button class="action-btn"><a href="{% url 'add_expense' %}">Add Expense</a></button>
+        <button class="action-btn"><a href="{% url 'add_savings' %}">Add Savings</a></button>
     </div>
 
-    <div>
+    <!-- Incomes Table -->
+    <div class="financial-table">
+        <h2>Incomes</h2>
+        <table class="income-table">
+            <thead>
+                <tr>
+                    <th>Source</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for income in incomes %}
+                <tr>
+                    <td>{{ income.source }}</td>
+                    <td>{{ income.amount }}</td>
+                    <td>{{ income.date }}</td>
+                    <td>{{ income.description }}</td>
+                    <td><a href="{% url 'update_income' income.id %}">Edit</a> | <a href="{% url 'delete_income' income.id %}"> Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Expenses Table -->
+    <div class="financial-table">
+        <h2>Expenses</h2>
+        <table class="expense-table">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expense in expenses %}
+                <tr>
+                    <td>{{ expense.category }}</td>
+                    <td>{{ expense.amount }}</td>
+                    <td>{{ expense.description }}</td>
+                    <td>{{ expense.date }}</td>
+                    <td><a href="{% url 'update_expense' expense.id %}">Edit</a> | <a href="{% url 'delete_expense' expense.id %}"> Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Savings Table -->
+    <div class="financial-table">
         <h2>Savings</h2>
-        <table>
+        <table class="savings-table">
             <thead>
                 <tr>
                     <th>Category</th>
@@ -85,16 +82,13 @@
                     <td>{{ saving.amount }}</td>
                     <td>{{ saving.description }}</td>
                     <td>{{ saving.date }}</td>
-                    <td><a href="{% url 'update_savings' saving.id %}">Edit</a> | <a href="{% url 'delete_savings' saving.id %}"> Delete</a> </td>
-                    
+                    <td><a href="{% url 'update_savings' saving.id %}">Edit</a> | <a href="{% url 'delete_savings' saving.id %}"> Delete</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+
 </div>
 
-    
-    {% endblock %}
-
-    
+{% endblock %}

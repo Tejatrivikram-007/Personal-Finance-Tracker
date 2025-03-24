@@ -5,12 +5,12 @@
     <p class="total-income">Total Income: ₹ {{ total_income }}</p>
     <p class="total-expense">Total Expense: ₹ {{ total_expense }}</p>
     <p class="total-savings" style="color: #03a9f4;font-size: 18px;margin: 10px 0;">Total Savings: ₹ {{ total_savings }}</p>
-    <p class="balance">Savings + Remaining Balance: ₹ {{ balance }}</p>
+    <p class="balance">Balance: ₹ {{ balance }}</p>
 
     <h2 class="income-title">Income Records</h2>
     <ul class="income-list">
         {% for income in income_records %}
-            <li class="income-item">{{ income.date }}: ₹ {{ income.amount }} - {{ income.source }} - {{ income.description }}</li>
+            <li class="income-item" style="font-size: 16px;">{{ income.date }}: ₹ {{ income.amount }} - {{ income.source }} -  {{ income.description }}</li>
         {% empty %}
             <li class="income-empty">No income records for this month.</li>
         {% endfor %}
@@ -19,7 +19,7 @@
     <h2 class="expense-title">Expense Records</h2>
     <ul class="expense-list">
         {% for expense in expense_records %}
-            <li class="expense-item">{{ expense.date }}: ₹ {{ expense.amount }} - {{ expense.category }} - {{ expense.description }}</li>
+            <li class="expense-item" style="font-size: 16px;">{{ expense.date }}: ₹ {{ expense.amount }} - {{ expense.category }} - {{ expense.description }}</li>
         {% empty %}
             <li class="expense-empty">No expense records for this month.</li>
         {% endfor %}

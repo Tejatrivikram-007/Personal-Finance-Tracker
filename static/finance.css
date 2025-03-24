@@ -1,0 +1,117 @@
+
+.financial-container {
+    margin: 20px;
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .action-btn {
+    width: 100%;
+    padding: 12px 25px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .action-btn a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+  }
+  
+  .action-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .financial-table h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  th, td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #007BFF;
+    font-size: 14px;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Styles */
+  
+  /* Tablet Layout (max-width: 768px) */
+  @media (max-width: 768px) {
+    .action-buttons {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+    .action-btn {
+      width: 45%;
+      margin-bottom: 10px;
+    }
+  
+    .financial-table table {
+      font-size: 14px;
+    }
+  
+    th, td {
+      padding: 8px;
+    }
+  }
+  
+  /* Mobile Layout (max-width: 480px) */
+  @media (max-width: 480px) {
+
+    .action-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .action-btn {
+      width: 100%;
+      padding: 15px;
+      font-size: 18px;
+    }
+    .action-btn a{
+        font-size: 12px;
+        font-weight: 600;
+    }
+  
+    .financial-table table {
+      font-size: 12px;
+    }
+  
+    th, td {
+      padding: 10px;
+    }
+  }
+  

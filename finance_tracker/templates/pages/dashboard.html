@@ -7,21 +7,24 @@
 <p>Total Savings: ₹ {{ total_savings }}</p>
 <p>Available Balance: ₹ {{ balance }}</p>
 
-<button class="my-button" style="border-radius: 10px;">
-    <a href="{% url 'add_income' %}" style='text-decoration: none;padding: 15px;color: black;'>Add Income</a>
-</button>
-<button class="my-button" style="border-radius: 10px;">
-    <a href="{% url 'add_expense' %}" style='text-decoration: none;padding: 15px;color: black;'>Add Expense</a>
-</button>
-<button class="my-button" style="border-radius: 10px;">
-    <a href="{% url 'add_savings' %}" style='text-decoration: none;padding: 15px;color: black;'>Add Savings</a>
-</button>
+<div class="my-buttons">
+    <button class="my-button">
+        <a href="{% url 'add_income' %}" style="text-decoration: none;">Add Income</a>
+    </button>
+    <button class="my-button">
+        <a href="{% url 'add_expense' %}" style="text-decoration: none;">Add Expense</a>
+    </button>
+    <button class="my-button">
+        <a href="{% url 'add_savings' %}" style="text-decoration: none;">Add Savings</a>
+    </button>
+</div>
+
 <br><br><br>
 <div class="header-container">
     <h1 class="chart-title"><u>Income, Expenses, Savings Charts</u></h1>
   </div>
   
-<div class="chart-container">
+<div class="chart-container" style="display: flex;justify-content: center;">
     
     <div class="chart-item">
         <h3>Expenses by Category</h3>

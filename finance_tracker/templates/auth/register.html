@@ -4,7 +4,7 @@
 
 <div class="row justify-content-center">
     <div class="col-sm-6">
-        <h2 class="text-muted">Register</h2>
+        <h2 class="text-muted row justify-content-center">Register</h2>
         <form method="POST" action="{% url 'register' %}">
             {% csrf_token %}
             <div class="form-group">
@@ -27,8 +27,8 @@
                 <span class="text-danger">{{ form.password2.errors }}</span>
             </div>
 
-            <div class="register_btns" style="display: flex;justify-content: center; gap: 35px;">
-            <button type="submit" class="btn_regiter btn-dark" style="padding: 10px 25px;border-radius: 15px;">Submit</button>
+            <div class="loginpage_a">
+            <button type="submit" class="btn_login " style="padding: 10px 25px;border-radius: 15px;">Submit</button>
 
             <a href="{% url 'login' %}" class="btn_login_page btn-default" >Login</a>
         </div>
