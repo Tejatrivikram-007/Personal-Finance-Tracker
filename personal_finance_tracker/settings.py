@@ -26,7 +26,8 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG","False").lower()=="True"
 
-ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS")
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split() if os.environ.get("ALLOWED_HOSTS") else []
+
 
 
 # Application definition
@@ -129,9 +130,6 @@ STATIC_URL = '/static/'
 
 # Ensure that you have this for static files collection
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Add this in production for external CSS files if you're using CDN or another source
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
