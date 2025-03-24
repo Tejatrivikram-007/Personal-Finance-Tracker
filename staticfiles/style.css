@@ -11,15 +11,6 @@ body {
   background-color: #f9f9f9;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
 .navbar {
   background-color: #333;
   color: #fff;
@@ -106,44 +97,54 @@ input[type="submit"]:hover {
   background-color: #3e8e41;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th,
-td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: left;
-}
-
-th {
-  background-color: #f0f0f0;
-}
-
 .loginpage_a {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 35px;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px;
 }
 
 .btn_login_page {
-  padding: 10px 10px;
   text-decoration: none;
-  color: black;
-  font-size: 14px;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  text-align: center;
+  transition: background-color 0.3s ease;
 }
 
-.btn_login_page:hover {
-  transition: ease-in-out 0.3s;
-  text-decoration: dashed;
-  color: white;
-  background-color: black;
-  border: 2px solid black;
+.btn_login_page.btn-default {
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.btn_login_page.btn-default:hover {
+  background-color: #e2e2e2;
+}
+
+.btn_login {
+  padding: 10px 25px;
+  font-size: 18px;
   border-radius: 15px;
-  box-shadow: 0 0 10px black;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.btn_login:hover {
+  background-color: #0056b3;
+}
+
+
+.my-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 0;
+  flex-wrap: wrap;
 }
 
 .my-button {
@@ -154,9 +155,15 @@ th {
   border: 2px solid transparent;
   font-size: 16px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 10px;
   text-align: center;
   overflow: hidden;
+  width: 30%; 
+}
+
+.my-button a {
+  text-decoration: none;
+  color: black;
 }
 
 .my-button::after {
@@ -174,12 +181,14 @@ th {
   width: 100%;
 }
 
-.btn {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  padding: 25px;
+.my-button:hover {
+  background-color: #e67e22;
 }
+
+.my-button:active {
+  background-color: #d35400;
+}
+
 
 .btn_save {
   padding: 10px 10px;
@@ -198,91 +207,89 @@ th {
   border-radius: 15px;
   box-shadow: 0 0 10px black;
 }
-
-.finance_btn {
-  border-radius: 10px;
-  background-color: #f4f4f4;
-  padding: 15px 25px;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 16px;
-  text-align: center;
+.btn_finance {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 10px 0;
 }
 
-.finance_btn:hover {
-  background-color: #ddd;
-}
-
-.finance_btn a {
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-}
-
-.finance_btn:active {
-  background-color: #ccc;
-}
 
 /* Media Queries */
 @media only screen and (max-width: 768px) {
-  .container {
-    margin: 10px;
+  .loginpage_a {
+    padding: 15px;
+    flex-direction: column;
+
   }
 
+  .btn_login_page {
+    font-size: 14px;
+    padding: 8px 15px;
+  }
+
+  .btn_login {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+ 
   form {
     margin: 10px;
   }
-
-  table {
-    font-size: 14px;
+  .my-buttons {
+    justify-content: center;
+    gap: 15px;
   }
 
-  .finance_btn {
-    padding: 12px 20px;
+  .my-button {
+    width: 45%; 
+    padding: 10px 20px; 
     font-size: 14px;
   }
 }
 
 @media only screen and (max-width: 480px) {
-  .container {
-    margin: 10px;
-    margin-left: -10px;
-    box-shadow: 0 0 10px rgba(243, 240, 240, 0.1);
+ 
+  .loginpage_a {
+    padding: 10px;
+    flex-direction: column;
   }
 
+  .btn_login_page {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .btn_login {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
   form {
     margin: 5px;
   }
-
-  table {
-    font-size: 12px;
+  .my-buttons {
+    flex-direction: column; 
+    align-items: center;
+    gap: 15px;
   }
 
   .my-button {
-    padding: 5px 5px;
+    width: 100%; 
+    padding: 12px 15px; 
+    font-size: 14px; 
   }
 
   .bounce-border-button {
     padding: 5px 5px;
     font-size: 12px;
   }
-
-  .finance_btn {
-    padding: 5px 5px;
-    font-size: 10px;
-  }
-
-  .finance_btn a {
-    font-size: 10px;
-  }
+  
 }
 
 @media only screen and (max-width: 360px) {
   table {
     margin-left: -20px;
   }
-
   .bounce-border-button {
     padding: 5px 5px;
     font-size: 10px;
